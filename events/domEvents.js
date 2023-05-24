@@ -1,11 +1,13 @@
 import {
-  deleteBook, getBooks,
+  deleteBook, getBooks, getSingleBook
 } from '../api/bookData';
 import { showBooks } from '../pages/books';
 import {
-  getAuthors, deleteSingleAuthor
+  getAuthors, deleteSingleAuthor, getSingleAuthor
 } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
+import addBookForm from '../components/forms/addBookForm';
+import addAuthorForm from '../components/forms/addAuthorForm';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -25,10 +27,14 @@ const domEvents = () => {
     // TODO: CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
       console.warn('ADD BOOK');
+      addBookForm();
     }
 
     // TODO: CLICK EVENT EDITING/UPDATING A BOOK
     if (e.target.id.includes('edit-book-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
       console.warn('EDIT BOOK', e.target.id);
       console.warn(e.target.id.split('--'));
     }
@@ -55,8 +61,13 @@ const domEvents = () => {
     // FIXME: ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('add-author-btn')) {
       console.warn('ADD AUTHOR');
+      addAuthorForm();
     }
     // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
+    if (e.target.id.includes('update-author')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
+    }
   });
 };
 
