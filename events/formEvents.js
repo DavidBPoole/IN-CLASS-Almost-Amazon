@@ -54,12 +54,10 @@ const formEvents = () => {
     // FIXME: ADD CLICK EVENT FOR SUBMITTING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('submit-author')) {
       const payload = {
-        title: document.querySelector('#title').value,
-        description: document.querySelector('#description').value,
-        image: document.querySelector('#image').value,
-        price: document.querySelector('#price').value,
-        author_id: document.querySelector('#author_id').value,
-        sale: document.querySelector('#sale').checked,
+        email: document.querySelector('#email').value,
+        favorite: document.querySelector('#favorite').value,
+        first_name: document.querySelector('#first_name').value,
+        last_name: document.querySelector('#last_name').value,
       };
 
       createAuthor(payload).then(({ name }) => {
@@ -75,18 +73,18 @@ const formEvents = () => {
     if (e.target.id.includes('update-author')) {
       const [, firebaseKey] = e.target.id.split('--');
       const payload = {
-        title: document.querySelector('#title').value,
-        description: document.querySelector('#description').value,
-        image: document.querySelector('#image').value,
-        price: document.querySelector('#price').value,
-        author_id: document.querySelector('#author_id').value,
-        sale: document.querySelector('#sale').checked,
+        email: document.querySelector('#email').value,
+        favorite: document.querySelector('#favorite').value,
+        first_name: document.querySelector('#first_name').value,
+        last_name: document.querySelector('#last_name').value,
         firebaseKey,
       };
 
       updateAuthor(payload).then(() => {
-        getBooks().then(showAuthors);
+        getAuthors().then(showAuthors);
       });
+      console.warn('CLICKED UPDATE AUTHOR', e.target.id);
+      console.warn(firebaseKey);
     }
   });
 };
