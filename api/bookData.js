@@ -58,7 +58,7 @@ const createBook = (payload) => new Promise((resolve, reject) => {
 
 // TODO: UPDATE BOOK
 const updateBook = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books${payload.firebaseKey}.json`, {
+  fetch(`${endpoint}/books/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

@@ -55,7 +55,7 @@ const formEvents = () => {
     if (e.target.id.includes('submit-author')) {
       const payload = {
         email: document.querySelector('#email').value,
-        favorite: document.querySelector('#favorite').value,
+        favorite: document.querySelector('#favorite').checked,
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
       };
