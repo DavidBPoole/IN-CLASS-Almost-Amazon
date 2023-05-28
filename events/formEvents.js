@@ -1,10 +1,6 @@
-import {
-  createBook, getBooks, updateBook
-} from '../api/bookData';
+import { createBook, getBooks, updateBook } from '../api/bookData';
+import { createAuthor, updateAuthor, getAuthors } from '../api/authorData';
 import { showBooks } from '../pages/books';
-import {
-  createAuthor, updateAuthor, getAuthors
-} from '../api/authorData';
 import { showAuthors } from '../pages/authors';
 
 const formEvents = () => {
@@ -74,7 +70,7 @@ const formEvents = () => {
       const [, firebaseKey] = e.target.id.split('--');
       const payload = {
         email: document.querySelector('#email').value,
-        favorite: document.querySelector('#favorite').value,
+        favorite: document.querySelector('#favorite').checked,
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
         firebaseKey,
