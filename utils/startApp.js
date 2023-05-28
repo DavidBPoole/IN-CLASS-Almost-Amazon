@@ -9,15 +9,17 @@ import { showBooks } from '../pages/books';
 import { getAuthors } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
 
-const startApp = () => {
-  domBuilder(); // BUILD THE DOM
-  domEvents(); // ADD THE EVENT LISTENTERS TO THE DOM
-  formEvents(); // ADD FORM EVENT LISTENTERS TO THE DOM
+const startApp = (user) => {
+  domBuilder(user); // BUILD THE DOM
+  domEvents(user); // ADD THE EVENT LISTENTERS TO THE DOM
+  formEvents(user); // ADD FORM EVENT LISTENTERS TO THE DOM
   navBar(); // DYNAMICALLY ADD THE NAV
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
   navigationEvents(); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
-  getAuthors().then((authors) => showAuthors(authors)); // Put all authors on the DOM on App load
-  getBooks().then((books) => showBooks(books));// TODO: Put all books on the DOM on App load
+  // Put all authors on the DOM on App load
+  getAuthors(user.id).then((authors) => showAuthors(authors));
+  // TODO: Put all books on the DOM on App load
+  getBooks(user.id).then((books) => showBooks(books));
 };
 
 export default startApp;

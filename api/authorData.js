@@ -3,8 +3,8 @@ import client from '../utils/client';
 const endpoint = client.databaseURL;
 
 // FIXME:  GET ALL AUTHORS
-const getAuthors = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors.json`, {
+const getAuthors = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json?orderBy="uid"&equalTo=${uid}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -21,21 +21,25 @@ const getAuthors = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getFavAuthor = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors.json?orderBy="favorite"&equalTo=true`, {
+const getFavAuthor = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json?orderBy="uid"&equalTo=${uid}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    // .then((data) => resolve(Object.values(data)))
+    .then((data) => {
+      const favAuthor = Object.values(data).filter((item) => item.favorite);
+      resolve(favAuthor);
+    })
     .catch(reject);
 });
 
 // FIXME: CREATE AUTHOR
 const createAuthor = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors.json`, {
+  fetch(`${endpoint}/authors.json?orderBy="uid"&equalTo=${uid}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +53,7 @@ const createAuthor = (payload) => new Promise((resolve, reject) => {
 
 // FIXME: GET SINGLE AUTHOR
 const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors/${firebaseKey}.json`, {
+  fetch(`${endpoint}/authors/${firebaseKey}.json?orderBy="uid"&equalTo=${uid}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
