@@ -17,9 +17,9 @@ const startApp = (user) => {
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
   navigationEvents(); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
   // Put all authors on the DOM on App load
-  getAuthors(user.id).then((authors) => showAuthors(authors));
+  getAuthors(user.uid).then((authors) => showAuthors(authors));
   // TODO: Put all books on the DOM on App load
-  getBooks(user.id).then((books) => showBooks(books));
+  getBooks(user.uid).then((books) => showBooks(books));
 };
 
 export default startApp;
