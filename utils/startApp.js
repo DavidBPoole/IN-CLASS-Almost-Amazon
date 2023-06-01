@@ -15,11 +15,11 @@ const startApp = (user) => {
   formEvents(user); // ADD FORM EVENT LISTENTERS TO THE DOM
   navBar(); // DYNAMICALLY ADD THE NAV
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
-  navigationEvents(); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
+  navigationEvents(user); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
   // Put all authors on the DOM on App load
-  getAuthors(user.uid).then((authors) => showAuthors(authors));
+  getAuthors(user).then((authors) => showAuthors(authors));
   // TODO: Put all books on the DOM on App load
-  getBooks(user.uid).then((books) => showBooks(books));
+  getBooks(user).then((books) => showBooks(books));
 };
 
 export default startApp;

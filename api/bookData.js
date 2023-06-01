@@ -5,7 +5,7 @@ const endpoint = client.databaseURL;
 
 // TODO: GET BOOKS
 const getBooks = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo=${uid}`, {
+  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
 
 // TODO: GET SINGLE BOOK
 const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books/${firebaseKey}.json?orderBy="uid"&equalTo=${uid}`, {
+  fetch(`${endpoint}/books/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'applicaton/json',
@@ -50,7 +50,7 @@ const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
 
 // TODO: CREATE BOOK *** NEEDS REVIEW FOR UID - WHERE TO DEFINE? ****
 const createBook = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo=${uid}`, {
+  fetch(`${endpoint}/books.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
