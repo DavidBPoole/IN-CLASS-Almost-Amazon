@@ -48,7 +48,7 @@ const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: CREATE BOOK *** NEEDS REVIEW FOR UID - WHERE TO DEFINE? ****
+// TODO: CREATE BOOK
 const createBook = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books.json`, {
     method: 'POST',
@@ -78,16 +78,13 @@ const updateBook = (payload) => new Promise((resolve, reject) => {
 
 // TODO: FILTER BOOKS ON SALE
 const booksOnSale = (uid) => new Promise((resolve, reject) => {
-  // fetch(`${endpoint}/books.json?orderBy="sale"&equalTo=true`, {
-  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo=${uid}`, {
+  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    // .then((data) => resolve(Object.values(data)))
-    // .catch(reject);
     .then((data) => {
       const onSale = Object.values(data).filter((item) => item.sale);
       resolve(onSale);

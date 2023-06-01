@@ -5,7 +5,7 @@ const selectAuthor = (authorId, user) => {
   let domString = `<label for="author">Select an Author</label>
     <select class="form-control" id="author_id" required>
     <option value="">Select an Author</option>`;
-  // added user.uid in line immediately below**
+
   getAuthors(user.uid).then((authorsArray) => {
     authorsArray.forEach((author) => {
       domString += `

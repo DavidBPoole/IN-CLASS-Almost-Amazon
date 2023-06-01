@@ -8,7 +8,7 @@ const formEvents = (user) => {
     e.preventDefault();
     // TODO: CLICK EVENT FOR SUBMITTING FORM FOR ADDING A BOOK
     if (e.target.id.includes('submit-book')) {
-      console.warn('CLICKED SUBMIT BOOK', e.target.id);
+      // console.warn('CLICKED SUBMIT BOOK', e.target.id);
       const payload = {
         title: document.querySelector('#title').value,
         description: document.querySelector('#description').value,
@@ -16,7 +16,7 @@ const formEvents = (user) => {
         price: document.querySelector('#price').value,
         author_id: document.querySelector('#author_id').value,
         sale: document.querySelector('#sale').checked,
-        uid: user.uid
+        uid: user.uid,
       };
 
       createBook(payload).then(({ name }) => {
@@ -54,6 +54,7 @@ const formEvents = (user) => {
         email: document.querySelector('#email').value,
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
+        favorite: document.querySelector('#favorite').checked,
         uid: user.uid
       };
 
@@ -72,6 +73,7 @@ const formEvents = (user) => {
         email: document.querySelector('#email').value,
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
+        favorite: document.querySelector('#favorite').checked,
         firebaseKey,
       };
 

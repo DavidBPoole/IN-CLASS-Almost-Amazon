@@ -1,6 +1,8 @@
 import { deleteBook, getBooks, getSingleBook } from '../api/bookData';
 import { showBooks } from '../pages/books';
-import { getAuthors, getSingleAuthor } from '../api/authorData';
+import {
+  getAuthors, getSingleAuthor
+} from '../api/authorData';
 import { showAuthors } from '../pages/authors';
 import addBookForm from '../components/forms/addBookForm';
 import addAuthorForm from '../components/forms/addAuthorForm';
@@ -39,8 +41,8 @@ const domEvents = (user) => {
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
-      console.warn('VIEW BOOK', e.target.id);
-      console.warn(e.target.id.split('--'));
+      // console.warn('VIEW BOOK', e.target.id);
+      // console.warn(e.target.id.split('--'));
     }
 
     // FIXME: ADD CLICK EVENT FOR DELETING AN AUTHOR

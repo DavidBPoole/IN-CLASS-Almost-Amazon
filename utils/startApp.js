@@ -6,9 +6,8 @@ import formEvents from '../events/formEvents';
 import navigationEvents from '../events/navigationEvents';
 import { getBooks } from '../api/bookData';
 import { showBooks } from '../pages/books';
-import { getAuthors } from '../api/authorData';
-import { showAuthors } from '../pages/authors';
 
+// You can pass this function with no parameter and the app will work and display all books for ANY user signed in. By adding the parameter "user" it will then put books on the dom based on "uid".
 const startApp = (user) => {
   domBuilder(user); // BUILD THE DOM
   domEvents(user); // ADD THE EVENT LISTENTERS TO THE DOM
@@ -16,10 +15,9 @@ const startApp = (user) => {
   navBar(); // DYNAMICALLY ADD THE NAV
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
   navigationEvents(user); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
-  // Put all authors on the DOM on App load
-  getAuthors(user).then((authors) => showAuthors(authors));
-  // TODO: Put all books on the DOM on App load
-  getBooks(user).then((books) => showBooks(books));
+
+  // TODO: Put all books on the DOM on App load. Pass in the userID in order to display items based on UID.
+  getBooks(user.uid).then((books) => showBooks(books));
 };
 
 export default startApp;

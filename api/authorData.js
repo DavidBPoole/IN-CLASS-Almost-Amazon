@@ -29,11 +29,7 @@ const getFavAuthor = () => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    // .then((data) => resolve(Object.values(data)))
-    .then((data) => {
-      const favAuthor = Object.values(data).filter((item) => item.favorite);
-      resolve(favAuthor);
-    })
+    .then((data) => resolve(Object.values(data)))
     .catch(reject);
 });
 
